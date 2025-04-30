@@ -8,7 +8,8 @@ from tensorflow.keras.models import load_model
 # Load the IMDB dataset word index
 word_index = imdb.get_word_index()
 index_from = 3
-word_index = {k: (v + index_from) for k, v in word_index.items() if v < 10000}
+max_words = 10000
+word_index = {k: (v + index_from) for k, v in word_index.items() if v < (max_words - index_from)}
 
 # Add special tokens
 word_index["<PAD>"] = 0
@@ -27,7 +28,8 @@ def decode_review(encoded_review):
 def preproceess_review(review):
     # preprocess the review text
     words = review.lower().split()
-    encoded = [word_index.get(w, 2) for w in words]  # 2 = <UNK>
+    encoded = [word_index.get(word, 2) for word in words]  # 2 = <UNK>
+    encoded = [1] + encoded  # Add <START> token
     padded = sequence.pad_sequences([encoded], maxlen=500)
     return padded
 
