@@ -6,7 +6,7 @@ A deep learning-based web application that classifies movie reviews from the IMD
 
 ## 🌐 Live Demo
 
-> ⚙️ [View the live app](https://imdb-sentiment-analysis-vdbebwunwvirzmwsbqtsss.streamlit.app/)
+> ⚙️ [View the live app](https://imdb-sentiment-analysis-fcnuccxn4j5yrvghbmdfmz.streamlit.app/)
 
 ---
 
@@ -119,7 +119,7 @@ All dependencies are listed in requirements.txt.
 ## 📜 License
 This project is licensed under the GNU General Public License v3.0. See the LICENSE file for more information.
 
-##👨‍💻 Author
+## 👨‍💻 Author
 Mohammed Saim Ahmed Quadri
 📫 [LinkedIn](https://www.linkedin.com/in/msaquadri)
 📧 mohammedsaimquadri@gmail.com
