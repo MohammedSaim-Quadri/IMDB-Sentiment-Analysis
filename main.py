@@ -7,7 +7,14 @@ from tensorflow.keras.models import load_model
 
 # Load the IMDB dataset word index
 word_index = imdb.get_word_index()
-reverse_word_index = {v: k for k, v in word_index.items()}
+index_from = 3
+word_index = {k: (v + index_from) for k, v in word_index.items() if v < 10000}
+
+# Add special tokens
+word_index["<PAD>"] = 0
+word_index["<START>"] = 1
+word_index["<UNK>"] = 2
+word_index["<UNUSED>"] = 3
 
 # Load the pre-trained model
 model = load_model('imdb_rnn_model.h5')
@@ -20,10 +27,9 @@ def decode_review(encoded_review):
 def preproceess_review(review):
     # preprocess the review text
     words = review.lower().split()
-    encoded_review = [word_index.get(w, 2) + 3 for w in words]
-    padded_review = sequence.pad_sequences([encoded_review], maxlen=500)
-    return padded_review
-
+    encoded = [word_index.get(w, 2) for w in words]  # 2 = <UNK>
+    padded = sequence.pad_sequences([encoded], maxlen=500)
+    return padded
 
 
 ## streamlit app
